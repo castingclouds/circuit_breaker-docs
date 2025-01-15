@@ -1,9 +1,7 @@
 ---
 weight: 4
 bookFlatSection: true
-title: "Examples"
 ---
-
 # Document Workflow Example
 
 This example demonstrates how to use Circuit Breaker to implement a document workflow system with AI-powered analysis. It showcases a declarative DSL for defining workflows, rules, validations, and AI-powered document analysis.

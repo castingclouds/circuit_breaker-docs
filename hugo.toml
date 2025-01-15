@@ -1,23 +1,28 @@
 baseURL = 'https://lfaus.github.io/circuit_breaker/'
 languageCode = 'en-us'
-title = 'Circuit Breaker Documentation'
-theme = 'hugo-book'
+title = 'Circuit Breaker'
+theme = 'hextra'
 
-# Book theme specific configurations
+[markup.goldmark.renderer]
+unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "Documentation"
+    pageRef = "/docs"
+    weight = 1
+
+  [[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/lfaus/circuit_breaker"
+    weight = 2
+
 [params]
-  # (Optional) Set Google Analytics if you use it to track your website.
-  # googleAnalytics = "G-XXX"
+  description = "A powerful Ruby library for building AI-powered workflows and assistants"
+  
+  [params.footer]
+    enable = true
+    copyright = " 2025 Circuit Breaker"
 
-  # (Optional) If you provide a Disqus shortname, comments will be enabled on
-  # all pages.
-  # disqusShortname = "my-site"
-
-  # (Optional) Theme is intended for documentation use, therefore it doesn't render taxonomy.
-  # You can remove all taxonomies by following config:
-  disablePathToLower = true
-  enableGitInfo = true
-
-  # (Optional) Set this to true to enable 'Last Modified by' date and git author
-  #  information on 'doc' type pages.
-  BookRepo = 'https://github.com/lfaus/circuit_breaker'
-  BookEditPath = 'edit/main/content'
+  [params.search]
+    enable = true

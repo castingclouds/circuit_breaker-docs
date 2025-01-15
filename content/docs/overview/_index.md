@@ -3,11 +3,6 @@ weight: 1
 bookFlatSection: true
 title: "Overview"
 ---
-
-# Overview
-
-## Motivation
-
 Circuit Breaker was created to address the growing need for robust, AI-powered workflow management in modern applications. As applications increasingly incorporate AI capabilities, there's a need for a framework that can:
 
 1. **Seamlessly Integrate AI**: Handle interactions with various LLM providers while maintaining clean separation of concerns

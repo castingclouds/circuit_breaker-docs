@@ -1,11 +1,7 @@
 ---
 weight: 2
 bookFlatSection: true
-title: "Getting Started"
 ---
-
-# Getting Started with Circuit Breaker
-
 ## Installation
 
 Add this line to your application's Gemfile:

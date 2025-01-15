@@ -1,9 +1,7 @@
 ---
 weight: 3
 bookFlatSection: true
-title: "Executors"
 ---
-
 # Circuit Breaker Executors
 
 The Circuit Breaker executor system provides a flexible, DSL-driven approach to defining and running various types of execution environments. Each executor follows a consistent pattern while allowing for specialized configuration and behavior.
