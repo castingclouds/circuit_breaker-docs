@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Getting Started with Circuit Breaker
+  #
+
+
+  Installation
+  #
+
+Add this line to your application&rsquo;s Gemfile:
+gem &#39;circuit_breaker&#39;
+And then execute:
+$ bundle install
+Or install it yourself as:
+$ gem install circuit_breaker
+
+  Basic Usage
+  #
+
+
+  Action-Rule Data Flow
+  #
+
+Circuit Breaker provides a powerful mechanism for passing data between actions and rules during workflow transitions. Here&rsquo;s how it works:
+
+Actions with Named Results
+
+flow :draft &gt;&gt; :pending_review, :submit do
+  actions do
+    # Execute action and store result with key :clarity
+    execute analyzer, :analyze_clarity, :clarity
+  end
+  policy all: [:valid_clarity]
+end
+
+Accessing Results in Rules
+
+CircuitBreaker::Rules::DSL.define do
+  rule :valid_clarity do |token|
+    # Retrieve stored result using the same key
+    clarity = context.get_result(:clarity)
+    clarity &amp;&amp; clarity[:score] &gt;= 70
+  end
+end
+
+  Data Flow Process
+  #
+
+
+Actions are executed first during a transition
+Results are stored in an action context using the specified key
+Rules can access these results through the same key
+This enables rules to validate based on action outputs
+
+This pattern allows for:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/getting-started/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Getting Started">
+  <meta property="og:description" content="Getting Started with Circuit Breaker # Installation # Add this line to your application’s Gemfile:
+gem &#39;circuit_breaker&#39; And then execute:
+$ bundle install Or install it yourself as:
+$ gem install circuit_breaker Basic Usage # Action-Rule Data Flow # Circuit Breaker provides a powerful mechanism for passing data between actions and rules during workflow transitions. Here’s how it works:
+Actions with Named Results flow :draft &gt;&gt; :pending_review, :submit do actions do # Execute action and store result with key :clarity execute analyzer, :analyze_clarity, :clarity end policy all: [:valid_clarity] end Accessing Results in Rules CircuitBreaker::Rules::DSL.define do rule :valid_clarity do |token| # Retrieve stored result using the same key clarity = context.get_result(:clarity) clarity &amp;&amp; clarity[:score] &gt;= 70 end end Data Flow Process # Actions are executed first during a transition Results are stored in an action context using the specified key Rules can access these results through the same key This enables rules to validate based on action outputs This pattern allows for:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Getting Started | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/getting-started/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/getting-started/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="active">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Getting Started</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#basic-usage">Basic Usage</a>
+      <ul>
+        <li><a href="#action-rule-data-flow">Action-Rule Data Flow</a></li>
+        <li><a href="#data-flow-process">Data Flow Process</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="getting-started-with-circuit-breaker">
+  Getting Started with Circuit Breaker
+  <a class="anchor" href="#getting-started-with-circuit-breaker">#</a>
+</h1>
+<h2 id="installation">
+  Installation
+  <a class="anchor" href="#installation">#</a>
+</h2>
+<p>Add this line to your application&rsquo;s Gemfile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>gem <span style="color:#e6db74">&#39;circuit_breaker&#39;</span>
+</span></span></code></pre></div><p>And then execute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ bundle install
+</span></span></code></pre></div><p>Or install it yourself as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gem install circuit_breaker
+</span></span></code></pre></div><h2 id="basic-usage">
+  Basic Usage
+  <a class="anchor" href="#basic-usage">#</a>
+</h2>
+<h3 id="action-rule-data-flow">
+  Action-Rule Data Flow
+  <a class="anchor" href="#action-rule-data-flow">#</a>
+</h3>
+<p>Circuit Breaker provides a powerful mechanism for passing data between actions and rules during workflow transitions. Here&rsquo;s how it works:</p>
+<ol>
+<li><strong>Actions with Named Results</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>flow <span style="color:#e6db74">:draft</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:pending_review</span>, <span style="color:#e6db74">:submit</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Execute action and store result with key :clarity</span>
+</span></span><span style="display:flex;"><span>    execute analyzer, <span style="color:#e6db74">:analyze_clarity</span>, <span style="color:#e6db74">:clarity</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  policy <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:valid_clarity</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><ol start="2">
+<li><strong>Accessing Results in Rules</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Rules</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DSL</span><span style="color:#f92672">.</span>define <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  rule <span style="color:#e6db74">:valid_clarity</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>token<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Retrieve stored result using the same key</span>
+</span></span><span style="display:flex;"><span>    clarity <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span>get_result(<span style="color:#e6db74">:clarity</span>)
+</span></span><span style="display:flex;"><span>    clarity <span style="color:#f92672">&amp;&amp;</span> clarity<span style="color:#f92672">[</span><span style="color:#e6db74">:score</span><span style="color:#f92672">]</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">70</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="data-flow-process">
+  Data Flow Process
+  <a class="anchor" href="#data-flow-process">#</a>
+</h3>
+<ul>
+<li>Actions are executed first during a transition</li>
+<li>Results are stored in an action context using the specified key</li>
+<li>Rules can access these results through the same key</li>
+<li>This enables rules to validate based on action outputs</li>
+</ul>
+<p>This pattern allows for:</p>
+<ul>
+<li>Clean separation between action execution and rule validation</li>
+<li>Reusable actions with different validation rules</li>
+<li>Complex rule chains based on multiple action results</li>
+<li>Clear data flow tracking during transitions</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/getting-started/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#basic-usage">Basic Usage</a>
+      <ul>
+        <li><a href="#action-rule-data-flow">Action-Rule Data Flow</a></li>
+        <li><a href="#data-flow-process">Data Flow Process</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

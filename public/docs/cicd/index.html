@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Using Circuit Breaker for CI/CD and Infrastructure
+  #
+
+While traditional CI/CD tools are optimized for linear pipelines, Circuit Breaker&rsquo;s state-based approach offers unique advantages for modern DevOps practices. This guide explores how to leverage Circuit Breaker&rsquo;s capabilities for infrastructure management, CI/CD, and configuration management.
+
+  Environment Management
+  #
+
+Circuit Breaker can model complex environment lifecycles:
+workflow = CircuitBreaker::WorkflowDSL.define do
+  states :provisioning, :configuring, :testing, :active, :maintenance, :decommissioning
+  
+  flow(:provisioning &gt;&gt; :configuring)
+    .transition(:provision)
+    .policy(rules: { all: [:infrastructure_ready, :network_configured] })
+    .actions do
+      execute terraform_executor, :apply, :infrastructure
+      execute kubernetes_executor, :setup_namespace, :namespace
+    end
+
+  flow(:configuring &gt;&gt; :testing)
+    .transition(:configure)
+    .policy(rules: { all: [:config_valid, :secrets_available] })
+    .actions do
+      execute config_manager, :apply_configs, :configurations
+      execute vault_executor, :sync_secrets, :secrets
+    end
+
+  # Environment maintenance flows
+  flow(:active &gt;&gt; :maintenance)
+    .transition(:start_maintenance)
+    .policy(rules: { all: [:maintenance_window_open, :no_active_deployments] })
+end
+
+  Infrastructure as Code Integration
+  #
+
+Seamlessly integrate with infrastructure tools:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/cicd/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="CI/CD and Infrastructure">
+  <meta property="og:description" content="Using Circuit Breaker for CI/CD and Infrastructure # While traditional CI/CD tools are optimized for linear pipelines, Circuit Breaker’s state-based approach offers unique advantages for modern DevOps practices. This guide explores how to leverage Circuit Breaker’s capabilities for infrastructure management, CI/CD, and configuration management.
+Environment Management # Circuit Breaker can model complex environment lifecycles:
+workflow = CircuitBreaker::WorkflowDSL.define do states :provisioning, :configuring, :testing, :active, :maintenance, :decommissioning flow(:provisioning &gt;&gt; :configuring) .transition(:provision) .policy(rules: { all: [:infrastructure_ready, :network_configured] }) .actions do execute terraform_executor, :apply, :infrastructure execute kubernetes_executor, :setup_namespace, :namespace end flow(:configuring &gt;&gt; :testing) .transition(:configure) .policy(rules: { all: [:config_valid, :secrets_available] }) .actions do execute config_manager, :apply_configs, :configurations execute vault_executor, :sync_secrets, :secrets end # Environment maintenance flows flow(:active &gt;&gt; :maintenance) .transition(:start_maintenance) .policy(rules: { all: [:maintenance_window_open, :no_active_deployments] }) end Infrastructure as Code Integration # Seamlessly integrate with infrastructure tools:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>CI/CD and Infrastructure | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/cicd/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/cicd/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="active">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>CI/CD and Infrastructure</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#environment-management">Environment Management</a></li>
+    <li><a href="#infrastructure-as-code-integration">Infrastructure as Code Integration</a></li>
+    <li><a href="#configuration-management-database-cmdb-integration">Configuration Management Database (CMDB) Integration</a></li>
+    <li><a href="#release-orchestration">Release Orchestration</a></li>
+    <li><a href="#benefits-for-cicd">Benefits for CI/CD</a></li>
+    <li><a href="#integration-patterns">Integration Patterns</a>
+      <ul>
+        <li><a href="#1-environment-lifecycle-management">1. Environment Lifecycle Management</a></li>
+        <li><a href="#2-configuration-versioning">2. Configuration Versioning</a></li>
+        <li><a href="#3-release-coordination">3. Release Coordination</a></li>
+      </ul>
+    </li>
+    <li><a href="#best-practices">Best Practices</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="using-circuit-breaker-for-cicd-and-infrastructure">
+  Using Circuit Breaker for CI/CD and Infrastructure
+  <a class="anchor" href="#using-circuit-breaker-for-cicd-and-infrastructure">#</a>
+</h1>
+<p>While traditional CI/CD tools are optimized for linear pipelines, Circuit Breaker&rsquo;s state-based approach offers unique advantages for modern DevOps practices. This guide explores how to leverage Circuit Breaker&rsquo;s capabilities for infrastructure management, CI/CD, and configuration management.</p>
+<h2 id="environment-management">
+  Environment Management
+  <a class="anchor" href="#environment-management">#</a>
+</h2>
+<p>Circuit Breaker can model complex environment lifecycles:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> <span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">WorkflowDSL</span><span style="color:#f92672">.</span>define <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  states <span style="color:#e6db74">:provisioning</span>, <span style="color:#e6db74">:configuring</span>, <span style="color:#e6db74">:testing</span>, <span style="color:#e6db74">:active</span>, <span style="color:#e6db74">:maintenance</span>, <span style="color:#e6db74">:decommissioning</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:provisioning</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:configuring</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:provision</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:infrastructure_ready</span>, <span style="color:#e6db74">:network_configured</span><span style="color:#f92672">]</span> })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      execute terraform_executor, <span style="color:#e6db74">:apply</span>, <span style="color:#e6db74">:infrastructure</span>
+</span></span><span style="display:flex;"><span>      execute kubernetes_executor, <span style="color:#e6db74">:setup_namespace</span>, <span style="color:#e6db74">:namespace</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:configuring</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:testing</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:configure</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:config_valid</span>, <span style="color:#e6db74">:secrets_available</span><span style="color:#f92672">]</span> })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      execute config_manager, <span style="color:#e6db74">:apply_configs</span>, <span style="color:#e6db74">:configurations</span>
+</span></span><span style="display:flex;"><span>      execute vault_executor, <span style="color:#e6db74">:sync_secrets</span>, <span style="color:#e6db74">:secrets</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Environment maintenance flows</span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:active</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:maintenance</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:start_maintenance</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:maintenance_window_open</span>, <span style="color:#e6db74">:no_active_deployments</span><span style="color:#f92672">]</span> })
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="infrastructure-as-code-integration">
+  Infrastructure as Code Integration
+  <a class="anchor" href="#infrastructure-as-code-integration">#</a>
+</h2>
+<p>Seamlessly integrate with infrastructure tools:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TerraformExecutor</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Executors</span><span style="color:#f92672">::</span><span style="color:#66d9ef">BaseExecutor</span>
+</span></span><span style="display:flex;"><span>  executor_config <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    parameter <span style="color:#e6db74">:workspace</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:string</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    parameter <span style="color:#e6db74">:vars</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:hash</span>, <span style="color:#e6db74">default</span>: {}
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    before_execute <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>context<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      context<span style="color:#f92672">.</span>workspace_dir <span style="color:#f92672">=</span> setup_workspace(context<span style="color:#f92672">.</span>workspace)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    after_execute <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>result<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      cleanup_workspace(result<span style="color:#f92672">.</span>workspace_dir)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_internal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Execute Terraform with state management</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> apply_terraform(workspace_dir, vars)
+</span></span><span style="display:flex;"><span>    update_cmdb(result<span style="color:#f92672">.</span>resources) <span style="color:#75715e"># Sync with CMDB</span>
+</span></span><span style="display:flex;"><span>    result
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="configuration-management-database-cmdb-integration">
+  Configuration Management Database (CMDB) Integration
+  <a class="anchor" href="#configuration-management-database-cmdb-integration">#</a>
+</h2>
+<p>Track and manage infrastructure state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CMDBSyncExecutor</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Executors</span><span style="color:#f92672">::</span><span style="color:#66d9ef">BaseExecutor</span>
+</span></span><span style="display:flex;"><span>  executor_config <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    parameter <span style="color:#e6db74">:resource_type</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:string</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    parameter <span style="color:#e6db74">:changes</span>, <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:hash</span>, <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    validate <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>context<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      context<span style="color:#f92672">.</span>changes<span style="color:#f92672">.</span>valid_schema?(context<span style="color:#f92672">.</span>resource_type)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_internal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Sync changes with CMDB</span>
+</span></span><span style="display:flex;"><span>    cmdb_client<span style="color:#f92672">.</span>update_resources(resource_type, changes)
+</span></span><span style="display:flex;"><span>    trigger_dependent_updates(resource_type, changes)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="release-orchestration">
+  Release Orchestration
+  <a class="anchor" href="#release-orchestration">#</a>
+</h2>
+<p>Manage complex release processes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> <span style="color:#66d9ef">ReleaseWorkflow</span><span style="color:#f92672">.</span>define <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  states <span style="color:#e6db74">:planning</span>, <span style="color:#e6db74">:building</span>, <span style="color:#e6db74">:testing</span>, <span style="color:#e6db74">:staging</span>, <span style="color:#e6db74">:production</span>, <span style="color:#e6db74">:rollback</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:building</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:testing</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:build_complete</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { 
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:tests_passed</span>, <span style="color:#e6db74">:security_scan_passed</span>, <span style="color:#e6db74">:artifacts_published</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      execute artifact_manager, <span style="color:#e6db74">:publish</span>, <span style="color:#e6db74">:artifacts</span>
+</span></span><span style="display:flex;"><span>      execute security_scanner, <span style="color:#e6db74">:scan</span>, <span style="color:#e6db74">:security_report</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:staging</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:production</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:promote</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">:performance_tests_passed</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">:approval_obtained</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">:maintenance_window_open</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      execute deployment_executor, <span style="color:#e6db74">:canary_deploy</span>, <span style="color:#e6db74">:deployment</span>
+</span></span><span style="display:flex;"><span>      execute monitoring_executor, <span style="color:#e6db74">:verify_metrics</span>, <span style="color:#e6db74">:health_check</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Automated rollback capability</span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:production</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:rollback</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:rollback</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { <span style="color:#e6db74">any</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:health_check_failed</span>, <span style="color:#e6db74">:error_threshold_exceeded</span><span style="color:#f92672">]</span> })
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>actions <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>      execute rollback_executor, <span style="color:#e6db74">:revert_deployment</span>, <span style="color:#e6db74">:rollback_status</span>
+</span></span><span style="display:flex;"><span>      execute notification_executor, <span style="color:#e6db74">:alert_team</span>, <span style="color:#e6db74">:incident_report</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="benefits-for-cicd">
+  Benefits for CI/CD
+  <a class="anchor" href="#benefits-for-cicd">#</a>
+</h2>
+<p>Circuit Breaker offers several advantages for CI/CD:</p>
+<ol>
+<li>
+<p><strong>State Awareness</strong></p>
+<ul>
+<li>Track environment state across deployments</li>
+<li>Maintain configuration versions</li>
+<li>Handle partial failures gracefully</li>
+</ul>
+</li>
+<li>
+<p><strong>Complex Dependencies</strong></p>
+<ul>
+<li>Model interdependent service deployments</li>
+<li>Handle cross-environment dependencies</li>
+<li>Manage configuration relationships</li>
+</ul>
+</li>
+<li>
+<p><strong>Audit and Compliance</strong></p>
+<ul>
+<li>Track all state changes</li>
+<li>Maintain deployment history</li>
+<li>Document approval workflows</li>
+</ul>
+</li>
+<li>
+<p><strong>Intelligent Automation</strong></p>
+<ul>
+<li>AI-powered deployment decisions</li>
+<li>Automated incident response</li>
+<li>Smart rollback triggers</li>
+</ul>
+</li>
+</ol>
+<h2 id="integration-patterns">
+  Integration Patterns
+  <a class="anchor" href="#integration-patterns">#</a>
+</h2>
+<p>Common integration patterns include:</p>
+<h3 id="1-environment-lifecycle-management">
+  1. Environment Lifecycle Management
+  <a class="anchor" href="#1-environment-lifecycle-management">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EnvironmentManager</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize</span>(env_name)
+</span></span><span style="display:flex;"><span>    @workflow <span style="color:#f92672">=</span> <span style="color:#66d9ef">EnvironmentWorkflow</span><span style="color:#f92672">.</span>new(env_name)
+</span></span><span style="display:flex;"><span>    @cmdb <span style="color:#f92672">=</span> <span style="color:#66d9ef">CMDBClient</span><span style="color:#f92672">.</span>new
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">provision</span>
+</span></span><span style="display:flex;"><span>    @workflow<span style="color:#f92672">.</span>provision <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>result<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      @cmdb<span style="color:#f92672">.</span>register_environment(result<span style="color:#f92672">.</span>env_details)
+</span></span><span style="display:flex;"><span>      notify_stakeholders(result<span style="color:#f92672">.</span>status)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="2-configuration-versioning">
+  2. Configuration Versioning
+  <a class="anchor" href="#2-configuration-versioning">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigVersioner</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">promote_config</span>(config_id)
+</span></span><span style="display:flex;"><span>    @workflow<span style="color:#f92672">.</span>promote_config(config_id) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>version<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      @cmdb<span style="color:#f92672">.</span>track_config_version(version)
+</span></span><span style="display:flex;"><span>      trigger_dependent_updates(version)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="3-release-coordination">
+  3. Release Coordination
+  <a class="anchor" href="#3-release-coordination">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReleaseCoordinator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">orchestrate_release</span>(release)
+</span></span><span style="display:flex;"><span>    @workflow<span style="color:#f92672">.</span>execute_release(release) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>stage<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      update_release_status(stage)
+</span></span><span style="display:flex;"><span>      verify_dependencies(stage)
+</span></span><span style="display:flex;"><span>      manage_feature_flags(stage)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="best-practices">
+  Best Practices
+  <a class="anchor" href="#best-practices">#</a>
+</h2>
+<ol>
+<li>
+<p><strong>State Management</strong></p>
+<ul>
+<li>Keep environment states clearly defined</li>
+<li>Use meaningful transition names</li>
+<li>Implement proper validation rules</li>
+<li>Track all state changes</li>
+</ul>
+</li>
+<li>
+<p><strong>Infrastructure Integration</strong></p>
+<ul>
+<li>Use idempotent operations</li>
+<li>Implement proper error handling</li>
+<li>Maintain state synchronization</li>
+<li>Version infrastructure changes</li>
+</ul>
+</li>
+<li>
+<p><strong>Release Management</strong></p>
+<ul>
+<li>Define clear promotion criteria</li>
+<li>Implement automated validations</li>
+<li>Set up proper monitoring</li>
+<li>Plan rollback strategies</li>
+</ul>
+</li>
+<li>
+<p><strong>CMDB Integration</strong></p>
+<ul>
+<li>Keep resource records updated</li>
+<li>Track configuration versions</li>
+<li>Maintain dependency graphs</li>
+<li>Document changes properly</li>
+</ul>
+</li>
+</ol>
+<p>This enhanced approach to CI/CD combines the best of traditional tools with Circuit Breaker&rsquo;s state management and AI capabilities, providing a more robust and intelligent deployment pipeline.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/cicd/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#environment-management">Environment Management</a></li>
+    <li><a href="#infrastructure-as-code-integration">Infrastructure as Code Integration</a></li>
+    <li><a href="#configuration-management-database-cmdb-integration">Configuration Management Database (CMDB) Integration</a></li>
+    <li><a href="#release-orchestration">Release Orchestration</a></li>
+    <li><a href="#benefits-for-cicd">Benefits for CI/CD</a></li>
+    <li><a href="#integration-patterns">Integration Patterns</a>
+      <ul>
+        <li><a href="#1-environment-lifecycle-management">1. Environment Lifecycle Management</a></li>
+        <li><a href="#2-configuration-versioning">2. Configuration Versioning</a></li>
+        <li><a href="#3-release-coordination">3. Release Coordination</a></li>
+      </ul>
+    </li>
+    <li><a href="#best-practices">Best Practices</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

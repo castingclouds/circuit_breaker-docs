@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Circuit Breaker Executors
+  #
+
+The Circuit Breaker executor system provides a flexible, DSL-driven approach to defining and running various types of execution environments. Each executor follows a consistent pattern while allowing for specialized configuration and behavior.
+
+  Executor DSL
+  #
+
+The executor DSL provides a declarative way to define:
+
+Required and optional parameters
+Type validations
+Custom validation rules
+Execution lifecycle hooks
+
+
+  Basic Structure
+  #
+
+class MyExecutor &lt; BaseExecutor
+  executor_config do
+    # Parameter definitions
+    parameter :name,
+      type: :string,
+      required: true,
+      description: &#39;Description of the parameter&#39;
+
+    # Validation rules
+    validate do |context|
+      # Custom validation logic
+    end
+
+    # Lifecycle hooks
+    before_execute do |context|
+      # Setup logic
+    end
+
+    after_execute do |result|
+      # Cleanup or logging logic
+    end
+  end
+
+  protected
+
+  def execute_internal
+    # Implementation
+    @result = { status: &#39;completed&#39; }
+  end
+end
+
+  Parameter Types
+  #
+
+The DSL supports the following parameter types:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/executors/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Executors">
+  <meta property="og:description" content="Circuit Breaker Executors # The Circuit Breaker executor system provides a flexible, DSL-driven approach to defining and running various types of execution environments. Each executor follows a consistent pattern while allowing for specialized configuration and behavior.
+Executor DSL # The executor DSL provides a declarative way to define:
+Required and optional parameters Type validations Custom validation rules Execution lifecycle hooks Basic Structure # class MyExecutor &lt; BaseExecutor executor_config do # Parameter definitions parameter :name, type: :string, required: true, description: &#39;Description of the parameter&#39; # Validation rules validate do |context| # Custom validation logic end # Lifecycle hooks before_execute do |context| # Setup logic end after_execute do |result| # Cleanup or logging logic end end protected def execute_internal # Implementation @result = { status: &#39;completed&#39; } end end Parameter Types # The DSL supports the following parameter types:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Executors | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/executors/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/executors/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="active">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Executors</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#executor-dsl">Executor DSL</a>
+      <ul>
+        <li><a href="#basic-structure">Basic Structure</a></li>
+        <li><a href="#parameter-types">Parameter Types</a></li>
+      </ul>
+    </li>
+    <li><a href="#available-executors">Available Executors</a>
+      <ul>
+        <li><a href="#docker-executor">Docker Executor</a></li>
+        <li><a href="#nats-executor">NATS Executor</a></li>
+        <li><a href="#assistant-executor">Assistant Executor</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="circuit-breaker-executors">
+  Circuit Breaker Executors
+  <a class="anchor" href="#circuit-breaker-executors">#</a>
+</h1>
+<p>The Circuit Breaker executor system provides a flexible, DSL-driven approach to defining and running various types of execution environments. Each executor follows a consistent pattern while allowing for specialized configuration and behavior.</p>
+<h2 id="executor-dsl">
+  Executor DSL
+  <a class="anchor" href="#executor-dsl">#</a>
+</h2>
+<p>The executor DSL provides a declarative way to define:</p>
+<ul>
+<li>Required and optional parameters</li>
+<li>Type validations</li>
+<li>Custom validation rules</li>
+<li>Execution lifecycle hooks</li>
+</ul>
+<h3 id="basic-structure">
+  Basic Structure
+  <a class="anchor" href="#basic-structure">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyExecutor</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">BaseExecutor</span>
+</span></span><span style="display:flex;"><span>  executor_config <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Parameter definitions</span>
+</span></span><span style="display:flex;"><span>    parameter <span style="color:#e6db74">:name</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">type</span>: <span style="color:#e6db74">:string</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">required</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">description</span>: <span style="color:#e6db74">&#39;Description of the parameter&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Validation rules</span>
+</span></span><span style="display:flex;"><span>    validate <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>context<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Custom validation logic</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Lifecycle hooks</span>
+</span></span><span style="display:flex;"><span>    before_execute <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>context<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Setup logic</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    after_execute <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>result<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Cleanup or logging logic</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">protected</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_internal</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Implementation</span>
+</span></span><span style="display:flex;"><span>    @result <span style="color:#f92672">=</span> { <span style="color:#e6db74">status</span>: <span style="color:#e6db74">&#39;completed&#39;</span> }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="parameter-types">
+  Parameter Types
+  <a class="anchor" href="#parameter-types">#</a>
+</h3>
+<p>The DSL supports the following parameter types:</p>
+<ul>
+<li><code>:string</code></li>
+<li><code>:integer</code></li>
+<li><code>:array</code></li>
+<li><code>:hash</code></li>
+<li><code>:boolean</code></li>
+</ul>
+<p>Each parameter can be configured with:</p>
+<ul>
+<li><code>required: true/false</code> - Whether the parameter must be provided</li>
+<li><code>default: value</code> - Default value if not provided</li>
+<li><code>description: 'text'</code> - Documentation for the parameter</li>
+</ul>
+<h2 id="available-executors">
+  Available Executors
+  <a class="anchor" href="#available-executors">#</a>
+</h2>
+<h3 id="docker-executor">
+  Docker Executor
+  <a class="anchor" href="#docker-executor">#</a>
+</h3>
+<p>Runs containers with configurable images, commands, and environment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>docker <span style="color:#f92672">=</span> <span style="color:#66d9ef">DockerExecutor</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">image</span>: <span style="color:#e6db74">&#39;nginx:latest&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">command</span>: <span style="color:#e6db74">&#39;nginx -g &#34;daemon off;&#34;&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">environment</span>: { <span style="color:#e6db74">&#39;PORT&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;8080&#39;</span> },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">volumes</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;/host/path:/container/path&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> docker<span style="color:#f92672">.</span>execute
+</span></span></code></pre></div><h3 id="nats-executor">
+  NATS Executor
+  <a class="anchor" href="#nats-executor">#</a>
+</h3>
+<p>Manages workflow state and event distribution using NATS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>nats <span style="color:#f92672">=</span> <span style="color:#66d9ef">NatsExecutor</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">nats_url</span>: <span style="color:#e6db74">&#39;nats://localhost:4222&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">petri_net</span>: workflow_definition,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">workflow_id</span>: <span style="color:#e6db74">&#39;custom-id&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> nats<span style="color:#f92672">.</span>execute
+</span></span></code></pre></div><h3 id="assistant-executor">
+  Assistant Executor
+  <a class="anchor" href="#assistant-executor">#</a>
+</h3>
+<p>Interacts with AI assistants for natural language processing tasks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>assistant <span style="color:#f92672">=</span> <span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Executors</span><span style="color:#f92672">::</span><span style="color:#66d9ef">AssistantExecutor</span><span style="color:#f92672">.</span>define <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  use_model <span style="color:#e6db74">&#39;qwen2.5-coder&#39;</span>
+</span></span><span style="display:flex;"><span>  with_system_prompt <span style="color:#e6db74">&#34;You are a specialized assistant...&#34;</span>
+</span></span><span style="display:flex;"><span>  with_parameters <span style="color:#e6db74">temperature</span>: <span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">7</span>, <span style="color:#e6db74">top_p</span>: <span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>  add_tools <span style="color:#f92672">[</span><span style="color:#66d9ef">AnalysisTool</span><span style="color:#f92672">.</span>new, <span style="color:#66d9ef">SentimentTool</span><span style="color:#f92672">.</span>new<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/executors/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#executor-dsl">Executor DSL</a>
+      <ul>
+        <li><a href="#basic-structure">Basic Structure</a></li>
+        <li><a href="#parameter-types">Parameter Types</a></li>
+      </ul>
+    </li>
+    <li><a href="#available-executors">Available Executors</a>
+      <ul>
+        <li><a href="#docker-executor">Docker Executor</a></li>
+        <li><a href="#nats-executor">NATS Executor</a></li>
+        <li><a href="#assistant-executor">Assistant Executor</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

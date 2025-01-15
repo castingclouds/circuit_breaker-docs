@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Document Workflow Example
+  #
+
+This example demonstrates how to use Circuit Breaker to implement a document workflow system with AI-powered analysis. It showcases a declarative DSL for defining workflows, rules, validations, and AI-powered document analysis.
+
+  Workflow Overview
+  #
+
+The document workflow system implements a document review and approval process with the following states:
+
+draft: Initial state for new documents
+pending_review: Document submitted for review
+reviewed: Review completed with comments
+approved: Document approved by manager
+rejected: Document rejected with reasons
+
+
+  Key Features
+  #
+
+
+  1. Unified Rules System
+  #
+
+
+Declarative rule definitions using DSL
+Complex rule chains with AND/OR logic
+Built-in validation helpers
+Clear error reporting
+Rule reusability across transitions
+
+
+  2. Workflow Management
+  #
+
+
+Intuitive state transition syntax (from &gt;&gt; to)
+Policy-based transitions with rule chains
+Comprehensive history tracking
+Event handling and state management
+Automatic validation during transitions
+
+
+  3. Document Rules
+  #
+
+
+Document validation rules:
+
+valid_reviewer: Ensures reviewer is assigned
+valid_review: Validates review comments
+valid_approver: Checks approver assignment
+is_admin_approver: Verifies approver permissions
+valid_word_count: Checks document length
+valid_external_url: Validates external references
+
+
+
+
+  4. AI-Powered Document Analysis
+  #
+
+
+Content quality and structure assessment
+Sentiment and tone analysis
+Automatic context detection
+Improvement suggestions
+Word count validation
+
+
+  Implementation
+  #
+
+
+  1. Define Document Rules
+  #
+
+rules = DocumentRules.define do
+  rule :valid_reviewer do |token|
+    token.reviewer_id.present?
+  end
+
+  rule :valid_review do |token|
+    token.reviewer_comments.present?
+  end
+
+  rule :is_admin_approver do |token|
+    token.approver_id&amp;.start_with?(&#39;admin_&#39;)
+  end
+end
+
+  2. Create Workflow
+  #
+
+workflow = CircuitBreaker::WorkflowDSL.define(rules: rules) do
+  states :draft, :pending_review, :reviewed, :approved, :rejected
+
+  flow(:draft &gt;&gt; :pending_review)
+    .transition(:submit)
+    .policy(rules: { all: [:valid_reviewer] })
+
+  flow(:pending_review &gt;&gt; :reviewed)
+    .transition(:review)
+    .policy(
+      rules: {
+        all: [:valid_review],
+        any: [:is_high_priority, :is_urgent]
+      }
+    )
+
+  flow(:reviewed &gt;&gt; :approved)
+    .transition(:approve)
+    .policy(
+      rules: {
+        all: [:valid_approver, :valid_review, :is_admin_approver],
+        any: [:valid_external_url, :valid_word_count]
+      }
+    )
+end
+
+  3. Process Document
+  #
+
+# Create document
+token = Examples::DocumentToken.new(
+  title: &#34;Project Proposal&#34;,
+  reviewer_id: &#34;user_123&#34;,
+  reviewer_comments: &#34;Looks good, minor revisions needed&#34;,
+  approver_id: &#34;admin_456&#34;
+)
+
+# Initialize workflow
+workflow = DocumentWorkflow.new(token)
+
+# Submit for review
+workflow.submit
+
+# Review document
+workflow.review
+
+# Approve document
+workflow.approve
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/examples/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Examples">
+  <meta property="og:description" content="Document Workflow Example # This example demonstrates how to use Circuit Breaker to implement a document workflow system with AI-powered analysis. It showcases a declarative DSL for defining workflows, rules, validations, and AI-powered document analysis.
+Workflow Overview # The document workflow system implements a document review and approval process with the following states:
+draft: Initial state for new documents pending_review: Document submitted for review reviewed: Review completed with comments approved: Document approved by manager rejected: Document rejected with reasons Key Features # 1. Unified Rules System # Declarative rule definitions using DSL Complex rule chains with AND/OR logic Built-in validation helpers Clear error reporting Rule reusability across transitions 2. Workflow Management # Intuitive state transition syntax (from &gt;&gt; to) Policy-based transitions with rule chains Comprehensive history tracking Event handling and state management Automatic validation during transitions 3. Document Rules # Document validation rules: valid_reviewer: Ensures reviewer is assigned valid_review: Validates review comments valid_approver: Checks approver assignment is_admin_approver: Verifies approver permissions valid_word_count: Checks document length valid_external_url: Validates external references 4. AI-Powered Document Analysis # Content quality and structure assessment Sentiment and tone analysis Automatic context detection Improvement suggestions Word count validation Implementation # 1. Define Document Rules # rules = DocumentRules.define do rule :valid_reviewer do |token| token.reviewer_id.present? end rule :valid_review do |token| token.reviewer_comments.present? end rule :is_admin_approver do |token| token.approver_id&amp;.start_with?(&#39;admin_&#39;) end end 2. Create Workflow # workflow = CircuitBreaker::WorkflowDSL.define(rules: rules) do states :draft, :pending_review, :reviewed, :approved, :rejected flow(:draft &gt;&gt; :pending_review) .transition(:submit) .policy(rules: { all: [:valid_reviewer] }) flow(:pending_review &gt;&gt; :reviewed) .transition(:review) .policy( rules: { all: [:valid_review], any: [:is_high_priority, :is_urgent] } ) flow(:reviewed &gt;&gt; :approved) .transition(:approve) .policy( rules: { all: [:valid_approver, :valid_review, :is_admin_approver], any: [:valid_external_url, :valid_word_count] } ) end 3. Process Document # # Create document token = Examples::DocumentToken.new( title: &#34;Project Proposal&#34;, reviewer_id: &#34;user_123&#34;, reviewer_comments: &#34;Looks good, minor revisions needed&#34;, approver_id: &#34;admin_456&#34; ) # Initialize workflow workflow = DocumentWorkflow.new(token) # Submit for review workflow.submit # Review document workflow.review # Approve document workflow.approve">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Examples | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/examples/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/examples/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="active">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Examples</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#workflow-overview">Workflow Overview</a></li>
+    <li><a href="#key-features">Key Features</a>
+      <ul>
+        <li><a href="#1-unified-rules-system">1. Unified Rules System</a></li>
+        <li><a href="#2-workflow-management">2. Workflow Management</a></li>
+        <li><a href="#3-document-rules">3. Document Rules</a></li>
+        <li><a href="#4-ai-powered-document-analysis">4. AI-Powered Document Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementation">Implementation</a>
+      <ul>
+        <li><a href="#1-define-document-rules">1. Define Document Rules</a></li>
+        <li><a href="#2-create-workflow">2. Create Workflow</a></li>
+        <li><a href="#3-process-document">3. Process Document</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="document-workflow-example">
+  Document Workflow Example
+  <a class="anchor" href="#document-workflow-example">#</a>
+</h1>
+<p>This example demonstrates how to use Circuit Breaker to implement a document workflow system with AI-powered analysis. It showcases a declarative DSL for defining workflows, rules, validations, and AI-powered document analysis.</p>
+<h2 id="workflow-overview">
+  Workflow Overview
+  <a class="anchor" href="#workflow-overview">#</a>
+</h2>
+<p>The document workflow system implements a document review and approval process with the following states:</p>
+<ul>
+<li><code>draft</code>: Initial state for new documents</li>
+<li><code>pending_review</code>: Document submitted for review</li>
+<li><code>reviewed</code>: Review completed with comments</li>
+<li><code>approved</code>: Document approved by manager</li>
+<li><code>rejected</code>: Document rejected with reasons</li>
+</ul>
+<h2 id="key-features">
+  Key Features
+  <a class="anchor" href="#key-features">#</a>
+</h2>
+<h3 id="1-unified-rules-system">
+  1. Unified Rules System
+  <a class="anchor" href="#1-unified-rules-system">#</a>
+</h3>
+<ul>
+<li>Declarative rule definitions using DSL</li>
+<li>Complex rule chains with AND/OR logic</li>
+<li>Built-in validation helpers</li>
+<li>Clear error reporting</li>
+<li>Rule reusability across transitions</li>
+</ul>
+<h3 id="2-workflow-management">
+  2. Workflow Management
+  <a class="anchor" href="#2-workflow-management">#</a>
+</h3>
+<ul>
+<li>Intuitive state transition syntax (<code>from &gt;&gt; to</code>)</li>
+<li>Policy-based transitions with rule chains</li>
+<li>Comprehensive history tracking</li>
+<li>Event handling and state management</li>
+<li>Automatic validation during transitions</li>
+</ul>
+<h3 id="3-document-rules">
+  3. Document Rules
+  <a class="anchor" href="#3-document-rules">#</a>
+</h3>
+<ul>
+<li>Document validation rules:
+<ul>
+<li><code>valid_reviewer</code>: Ensures reviewer is assigned</li>
+<li><code>valid_review</code>: Validates review comments</li>
+<li><code>valid_approver</code>: Checks approver assignment</li>
+<li><code>is_admin_approver</code>: Verifies approver permissions</li>
+<li><code>valid_word_count</code>: Checks document length</li>
+<li><code>valid_external_url</code>: Validates external references</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-ai-powered-document-analysis">
+  4. AI-Powered Document Analysis
+  <a class="anchor" href="#4-ai-powered-document-analysis">#</a>
+</h3>
+<ul>
+<li>Content quality and structure assessment</li>
+<li>Sentiment and tone analysis</li>
+<li>Automatic context detection</li>
+<li>Improvement suggestions</li>
+<li>Word count validation</li>
+</ul>
+<h2 id="implementation">
+  Implementation
+  <a class="anchor" href="#implementation">#</a>
+</h2>
+<h3 id="1-define-document-rules">
+  1. Define Document Rules
+  <a class="anchor" href="#1-define-document-rules">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>rules <span style="color:#f92672">=</span> <span style="color:#66d9ef">DocumentRules</span><span style="color:#f92672">.</span>define <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  rule <span style="color:#e6db74">:valid_reviewer</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>token<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    token<span style="color:#f92672">.</span>reviewer_id<span style="color:#f92672">.</span>present?
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  rule <span style="color:#e6db74">:valid_review</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>token<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    token<span style="color:#f92672">.</span>reviewer_comments<span style="color:#f92672">.</span>present?
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  rule <span style="color:#e6db74">:is_admin_approver</span> <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>token<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    token<span style="color:#f92672">.</span>approver_id<span style="color:#f92672">&amp;.</span>start_with?(<span style="color:#e6db74">&#39;admin_&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="2-create-workflow">
+  2. Create Workflow
+  <a class="anchor" href="#2-create-workflow">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> <span style="color:#66d9ef">CircuitBreaker</span><span style="color:#f92672">::</span><span style="color:#66d9ef">WorkflowDSL</span><span style="color:#f92672">.</span>define(<span style="color:#e6db74">rules</span>: rules) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  states <span style="color:#e6db74">:draft</span>, <span style="color:#e6db74">:pending_review</span>, <span style="color:#e6db74">:reviewed</span>, <span style="color:#e6db74">:approved</span>, <span style="color:#e6db74">:rejected</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:draft</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:pending_review</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:submit</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(<span style="color:#e6db74">rules</span>: { <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:valid_reviewer</span><span style="color:#f92672">]</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:pending_review</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:reviewed</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:review</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">rules</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:valid_review</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">any</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:is_high_priority</span>, <span style="color:#e6db74">:is_urgent</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  flow(<span style="color:#e6db74">:reviewed</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#e6db74">:approved</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>transition(<span style="color:#e6db74">:approve</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>policy(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">rules</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">all</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:valid_approver</span>, <span style="color:#e6db74">:valid_review</span>, <span style="color:#e6db74">:is_admin_approver</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">any</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">:valid_external_url</span>, <span style="color:#e6db74">:valid_word_count</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="3-process-document">
+  3. Process Document
+  <a class="anchor" href="#3-process-document">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># Create document</span>
+</span></span><span style="display:flex;"><span>token <span style="color:#f92672">=</span> <span style="color:#66d9ef">Examples</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DocumentToken</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">title</span>: <span style="color:#e6db74">&#34;Project Proposal&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">reviewer_id</span>: <span style="color:#e6db74">&#34;user_123&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">reviewer_comments</span>: <span style="color:#e6db74">&#34;Looks good, minor revisions needed&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">approver_id</span>: <span style="color:#e6db74">&#34;admin_456&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize workflow</span>
+</span></span><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> <span style="color:#66d9ef">DocumentWorkflow</span><span style="color:#f92672">.</span>new(token)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Submit for review</span>
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>submit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Review document</span>
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>review
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Approve document</span>
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>approve
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/examples/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#workflow-overview">Workflow Overview</a></li>
+    <li><a href="#key-features">Key Features</a>
+      <ul>
+        <li><a href="#1-unified-rules-system">1. Unified Rules System</a></li>
+        <li><a href="#2-workflow-management">2. Workflow Management</a></li>
+        <li><a href="#3-document-rules">3. Document Rules</a></li>
+        <li><a href="#4-ai-powered-document-analysis">4. AI-Powered Document Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementation">Implementation</a>
+      <ul>
+        <li><a href="#1-define-document-rules">1. Define Document Rules</a></li>
+        <li><a href="#2-create-workflow">2. Create Workflow</a></li>
+        <li><a href="#3-process-document">3. Process Document</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

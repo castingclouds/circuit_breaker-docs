@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Overview
+  #
+
+
+  Motivation
+  #
+
+Circuit Breaker was created to address the growing need for robust, AI-powered workflow management in modern applications. As applications increasingly incorporate AI capabilities, there&rsquo;s a need for a framework that can:
+
+Seamlessly Integrate AI: Handle interactions with various LLM providers while maintaining clean separation of concerns
+Manage Complex Workflows: Provide a declarative way to define and manage state transitions with validation
+Ensure Reliability: Implement proper error handling, retries, and state management for AI operations
+Maintain Flexibility: Allow for custom executors and easy extension of functionality
+
+
+  Architecture
+  #
+
+Circuit Breaker uses a hybrid architecture combining several powerful concepts:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/overview/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Overview">
+  <meta property="og:description" content="Overview # Motivation # Circuit Breaker was created to address the growing need for robust, AI-powered workflow management in modern applications. As applications increasingly incorporate AI capabilities, there’s a need for a framework that can:
+Seamlessly Integrate AI: Handle interactions with various LLM providers while maintaining clean separation of concerns Manage Complex Workflows: Provide a declarative way to define and manage state transitions with validation Ensure Reliability: Implement proper error handling, retries, and state management for AI operations Maintain Flexibility: Allow for custom executors and easy extension of functionality Architecture # Circuit Breaker uses a hybrid architecture combining several powerful concepts:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Overview | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/overview/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/overview/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="active">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Overview</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#1-workflow-engine">1. Workflow Engine</a></li>
+        <li><a href="#2-rules-engine">2. Rules Engine</a></li>
+        <li><a href="#3-ai-integration-layer">3. AI Integration Layer</a></li>
+        <li><a href="#4-event-system">4. Event System</a></li>
+      </ul>
+    </li>
+    <li><a href="#design-philosophy">Design Philosophy</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h1>
+<h2 id="motivation">
+  Motivation
+  <a class="anchor" href="#motivation">#</a>
+</h2>
+<p>Circuit Breaker was created to address the growing need for robust, AI-powered workflow management in modern applications. As applications increasingly incorporate AI capabilities, there&rsquo;s a need for a framework that can:</p>
+<ol>
+<li><strong>Seamlessly Integrate AI</strong>: Handle interactions with various LLM providers while maintaining clean separation of concerns</li>
+<li><strong>Manage Complex Workflows</strong>: Provide a declarative way to define and manage state transitions with validation</li>
+<li><strong>Ensure Reliability</strong>: Implement proper error handling, retries, and state management for AI operations</li>
+<li><strong>Maintain Flexibility</strong>: Allow for custom executors and easy extension of functionality</li>
+</ol>
+<h2 id="architecture">
+  Architecture
+  <a class="anchor" href="#architecture">#</a>
+</h2>
+<p>Circuit Breaker uses a hybrid architecture combining several powerful concepts:</p>
+<h3 id="1-workflow-engine">
+  1. Workflow Engine
+  <a class="anchor" href="#1-workflow-engine">#</a>
+</h3>
+<p>The core workflow engine is based on Petri nets, providing:</p>
+<ul>
+<li>Formal verification capabilities</li>
+<li>Clear state management</li>
+<li>Transition validation</li>
+<li>Comprehensive event tracking</li>
+</ul>
+<p>While basic Petri nets are not Turing complete, our implementation is closer to Colored Petri Nets (CPNs) or High-level Petri Nets, balancing theoretical power with practical utility.</p>
+<h3 id="2-rules-engine">
+  2. Rules Engine
+  <a class="anchor" href="#2-rules-engine">#</a>
+</h3>
+<p>A unified system for managing:</p>
+<ul>
+<li>Validation rules</li>
+<li>Transition policies</li>
+<li>Business logic</li>
+<li>Error handling</li>
+</ul>
+<p>The rules engine provides:</p>
+<ul>
+<li>Declarative rule definitions</li>
+<li>Complex rule chains</li>
+<li>Clear error reporting</li>
+<li>Rule reusability</li>
+</ul>
+<h3 id="3-ai-integration-layer">
+  3. AI Integration Layer
+  <a class="anchor" href="#3-ai-integration-layer">#</a>
+</h3>
+<p>A flexible system for:</p>
+<ul>
+<li>Multiple LLM provider support</li>
+<li>Automatic model selection</li>
+<li>Tool integration</li>
+<li>Memory management</li>
+<li>Error handling with retries</li>
+</ul>
+<h3 id="4-event-system">
+  4. Event System
+  <a class="anchor" href="#4-event-system">#</a>
+</h3>
+<p>Comprehensive tracking and auditing:</p>
+<ul>
+<li>State transition history</li>
+<li>Action execution logs</li>
+<li>Error tracking</li>
+<li>Audit trails</li>
+</ul>
+<h2 id="design-philosophy">
+  Design Philosophy
+  <a class="anchor" href="#design-philosophy">#</a>
+</h2>
+<p>Circuit Breaker balances several key principles:</p>
+<ol>
+<li><strong>Theoretical Soundness</strong>: Using formal methods (Petri nets) for workflow verification</li>
+<li><strong>Practical Utility</strong>: Providing a clean, Ruby-like DSL for easy implementation</li>
+<li><strong>Flexibility</strong>: Supporting custom executors and extensions</li>
+<li><strong>Reliability</strong>: Implementing robust error handling and state management</li>
+</ol>
+<p>This design allows Circuit Breaker to be:</p>
+<ul>
+<li>Expressive enough for complex business processes</li>
+<li>Analyzable for critical property verification</li>
+<li>Maintainable through the workflow DSL</li>
+<li>Extensible for various use cases</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/overview/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#1-workflow-engine">1. Workflow Engine</a></li>
+        <li><a href="#2-rules-engine">2. Rules Engine</a></li>
+        <li><a href="#3-ai-integration-layer">3. AI Integration Layer</a></li>
+        <li><a href="#4-event-system">4. Event System</a></li>
+      </ul>
+    </li>
+    <li><a href="#design-philosophy">Design Philosophy</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

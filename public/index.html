@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+	<meta name="generator" content="Hugo 0.140.2"><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Circuit Breaker
+  #
+
+Circuit Breaker is a powerful Ruby library that provides a declarative DSL for building AI-powered workflows and assistants. It seamlessly integrates with various LLM providers and offers robust tools for document analysis, workflow management, and autonomous agents.
+
+  Key Features
+  #
+
+
+  1. Declarative Workflow DSL
+  #
+
+
+State-based workflow engine with intuitive syntax
+Policy-based transitions with rule chains
+Unified rules system for validation and transitions
+Comprehensive history tracking
+Event handling and state management
+
+
+  2. Rules System
+  #
+
+
+Unified DSL for defining rules and validations
+Support for complex rule chains and conditions
+Built-in helpers for common validations
+Rule composition with AND/OR logic
+Clear error reporting and handling
+
+
+  3. AI Integration
+  #
+
+
+Multiple LLM providers (OpenAI, Ollama)
+Automatic model detection
+Tool integration framework
+Memory management
+Error handling with retries
+
+
+  4. Document Analysis
+  #
+
+
+Content quality assessment
+Sentiment and tone analysis
+Context detection
+Improvement suggestions
+Structure evaluation
+
+
+  5. Executors
+  #
+
+
+AssistantExecutor for AI-powered tools
+AgentExecutor for autonomous tasks
+Custom executor support
+Chainable tool pipelines
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Circuit Breaker">
+  <meta property="og:description" content="Circuit Breaker # Circuit Breaker is a powerful Ruby library that provides a declarative DSL for building AI-powered workflows and assistants. It seamlessly integrates with various LLM providers and offers robust tools for document analysis, workflow management, and autonomous agents.
+Key Features # 1. Declarative Workflow DSL # State-based workflow engine with intuitive syntax Policy-based transitions with rule chains Unified rules system for validation and transitions Comprehensive history tracking Event handling and state management 2. Rules System # Unified DSL for defining rules and validations Support for complex rule chains and conditions Built-in helpers for common validations Rule composition with AND/OR logic Clear error reporting and handling 3. AI Integration # Multiple LLM providers (OpenAI, Ollama) Automatic model detection Tool integration framework Memory management Error handling with retries 4. Document Analysis # Content quality assessment Sentiment and tone analysis Context detection Improvement suggestions Structure evaluation 5. Executors # AssistantExecutor for AI-powered tools AgentExecutor for autonomous tasks Custom executor support Chainable tool pipelines">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Circuit Breaker | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Circuit Breaker</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#key-features">Key Features</a>
+      <ul>
+        <li><a href="#1-declarative-workflow-dsl">1. Declarative Workflow DSL</a></li>
+        <li><a href="#2-rules-system">2. Rules System</a></li>
+        <li><a href="#3-ai-integration">3. AI Integration</a></li>
+        <li><a href="#4-document-analysis">4. Document Analysis</a></li>
+        <li><a href="#5-executors">5. Executors</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="circuit-breaker">
+  Circuit Breaker
+  <a class="anchor" href="#circuit-breaker">#</a>
+</h1>
+<p>Circuit Breaker is a powerful Ruby library that provides a declarative DSL for building AI-powered workflows and assistants. It seamlessly integrates with various LLM providers and offers robust tools for document analysis, workflow management, and autonomous agents.</p>
+<h2 id="key-features">
+  Key Features
+  <a class="anchor" href="#key-features">#</a>
+</h2>
+<h3 id="1-declarative-workflow-dsl">
+  1. Declarative Workflow DSL
+  <a class="anchor" href="#1-declarative-workflow-dsl">#</a>
+</h3>
+<ul>
+<li>State-based workflow engine with intuitive syntax</li>
+<li>Policy-based transitions with rule chains</li>
+<li>Unified rules system for validation and transitions</li>
+<li>Comprehensive history tracking</li>
+<li>Event handling and state management</li>
+</ul>
+<h3 id="2-rules-system">
+  2. Rules System
+  <a class="anchor" href="#2-rules-system">#</a>
+</h3>
+<ul>
+<li>Unified DSL for defining rules and validations</li>
+<li>Support for complex rule chains and conditions</li>
+<li>Built-in helpers for common validations</li>
+<li>Rule composition with AND/OR logic</li>
+<li>Clear error reporting and handling</li>
+</ul>
+<h3 id="3-ai-integration">
+  3. AI Integration
+  <a class="anchor" href="#3-ai-integration">#</a>
+</h3>
+<ul>
+<li>Multiple LLM providers (OpenAI, Ollama)</li>
+<li>Automatic model detection</li>
+<li>Tool integration framework</li>
+<li>Memory management</li>
+<li>Error handling with retries</li>
+</ul>
+<h3 id="4-document-analysis">
+  4. Document Analysis
+  <a class="anchor" href="#4-document-analysis">#</a>
+</h3>
+<ul>
+<li>Content quality assessment</li>
+<li>Sentiment and tone analysis</li>
+<li>Context detection</li>
+<li>Improvement suggestions</li>
+<li>Structure evaluation</li>
+</ul>
+<h3 id="5-executors">
+  5. Executors
+  <a class="anchor" href="#5-executors">#</a>
+</h3>
+<ul>
+<li>AssistantExecutor for AI-powered tools</li>
+<li>AgentExecutor for autonomous tasks</li>
+<li>Custom executor support</li>
+<li>Chainable tool pipelines</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#key-features">Key Features</a>
+      <ul>
+        <li><a href="#1-declarative-workflow-dsl">1. Declarative Workflow DSL</a></li>
+        <li><a href="#2-rules-system">2. Rules System</a></li>
+        <li><a href="#3-ai-integration">3. AI Integration</a></li>
+        <li><a href="#4-document-analysis">4. Document Analysis</a></li>
+        <li><a href="#5-executors">5. Executors</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/circuit_breaker/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=circuit_breaker/livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Comparison with Other Workflow Systems
+  #
+
+
+  DAGs vs. Petri Nets
+  #
+
+
+  Directed Acyclic Graphs (DAGs)
+  #
+
+DAGs are commonly used in workflow systems like Argo Workflows, Apache Airflow, and GitHub Actions. They offer:
+Advantages:
+
+Simple, intuitive representation of task dependencies
+Easy to visualize and understand
+Well-suited for linear, one-way processes
+Efficient execution of parallel tasks
+
+Limitations:
+
+Cannot represent cycles or loops natively
+Limited ability to model complex state conditions
+No built-in concept of state or tokens
+Difficult to model complex business processes
+
+
+  Petri Nets
+  #
+
+Circuit Breaker uses Petri Nets (specifically, a variant closer to Colored Petri Nets) as its underlying model. This provides:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/circuit_breaker/docs/comparison/">
+  <meta property="og:site_name" content="Circuit Breaker Documentation">
+  <meta property="og:title" content="Comparison with Other Systems">
+  <meta property="og:description" content="Comparison with Other Workflow Systems # DAGs vs. Petri Nets # Directed Acyclic Graphs (DAGs) # DAGs are commonly used in workflow systems like Argo Workflows, Apache Airflow, and GitHub Actions. They offer:
+Advantages:
+Simple, intuitive representation of task dependencies Easy to visualize and understand Well-suited for linear, one-way processes Efficient execution of parallel tasks Limitations:
+Cannot represent cycles or loops natively Limited ability to model complex state conditions No built-in concept of state or tokens Difficult to model complex business processes Petri Nets # Circuit Breaker uses Petri Nets (specifically, a variant closer to Colored Petri Nets) as its underlying model. This provides:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+<title>Comparison with Other Systems | Circuit Breaker Documentation</title>
+<link rel="icon" href="/circuit_breaker/favicon.png" >
+<link rel="manifest" href="/circuit_breaker/manifest.json">
+<link rel="canonical" href="http://localhost:1313/circuit_breaker/docs/comparison/">
+<link rel="stylesheet" href="/circuit_breaker/book.min.6c8b9d2a1fc95075ed7da46ca81060b39add8fff6741ac51259f768929281e2c.css" integrity="sha256-bIudKh/JUHXtfaRsqBBgs5rdj/9nQaxRJZ92iSkoHiw=" crossorigin="anonymous">
+  <script defer src="/circuit_breaker/fuse.min.js"></script>
+  <script defer src="/circuit_breaker/en.search.min.0ed3f1dc12801a8b7bc27141aab199d806407b69ff074ad7b179ab1c4d5be4ce.js" integrity="sha256-DtPx3BKAGot7wnFBqrGZ2AZAe2n/B0rXsXmrHE1b5M4=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/circuit_breaker/docs/comparison/index.xml" title="Circuit Breaker Documentation" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/circuit_breaker/"><span>Circuit Breaker Documentation</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/overview/" class="">Overview</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/getting-started/" class="">Getting Started</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/executors/" class="">Executors</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/examples/" class="">Examples</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/comparison/" class="active">Comparison with Other Systems</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/circuit_breaker/docs/cicd/" class="">CI/CD and Infrastructure</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/circuit_breaker/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Comparison with Other Systems</h3>
+
+  <label for="toc-control">
+    
+    <img src="/circuit_breaker/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#dags-vs-petri-nets">DAGs vs. Petri Nets</a>
+      <ul>
+        <li><a href="#directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</a></li>
+        <li><a href="#petri-nets">Petri Nets</a></li>
+      </ul>
+    </li>
+    <li><a href="#comparison-with-popular-workflow-systems">Comparison with Popular Workflow Systems</a>
+      <ul>
+        <li><a href="#argo-workflows">Argo Workflows</a></li>
+        <li><a href="#jenkins">Jenkins</a></li>
+        <li><a href="#github-actions">GitHub Actions</a></li>
+      </ul>
+    </li>
+    <li><a href="#when-to-use-circuit-breaker">When to Use Circuit Breaker</a></li>
+    <li><a href="#when-to-use-alternatives">When to Use Alternatives</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="comparison-with-other-workflow-systems">
+  Comparison with Other Workflow Systems
+  <a class="anchor" href="#comparison-with-other-workflow-systems">#</a>
+</h1>
+<h2 id="dags-vs-petri-nets">
+  DAGs vs. Petri Nets
+  <a class="anchor" href="#dags-vs-petri-nets">#</a>
+</h2>
+<h3 id="directed-acyclic-graphs-dags">
+  Directed Acyclic Graphs (DAGs)
+  <a class="anchor" href="#directed-acyclic-graphs-dags">#</a>
+</h3>
+<p>DAGs are commonly used in workflow systems like Argo Workflows, Apache Airflow, and GitHub Actions. They offer:</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Simple, intuitive representation of task dependencies</li>
+<li>Easy to visualize and understand</li>
+<li>Well-suited for linear, one-way processes</li>
+<li>Efficient execution of parallel tasks</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Cannot represent cycles or loops natively</li>
+<li>Limited ability to model complex state conditions</li>
+<li>No built-in concept of state or tokens</li>
+<li>Difficult to model complex business processes</li>
+</ul>
+<h3 id="petri-nets">
+  Petri Nets
+  <a class="anchor" href="#petri-nets">#</a>
+</h3>
+<p>Circuit Breaker uses Petri Nets (specifically, a variant closer to Colored Petri Nets) as its underlying model. This provides:</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Rich theoretical foundation with formal verification</li>
+<li>Native support for state and tokens</li>
+<li>Ability to model complex conditions and cycles</li>
+<li>Better representation of business processes</li>
+<li>Support for concurrent and distributed systems</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>More complex to understand initially</li>
+<li>Can be more verbose for simple linear workflows</li>
+<li>Requires more careful design for optimal performance</li>
+</ul>
+<h2 id="comparison-with-popular-workflow-systems">
+  Comparison with Popular Workflow Systems
+  <a class="anchor" href="#comparison-with-popular-workflow-systems">#</a>
+</h2>
+<h3 id="argo-workflows">
+  Argo Workflows
+  <a class="anchor" href="#argo-workflows">#</a>
+</h3>
+<p><strong>Focus:</strong> Container-native workflow engine for Kubernetes</p>
+<p><strong>Key Differences:</strong></p>
+<ul>
+<li>Argo uses DAGs, while Circuit Breaker uses Petri Nets</li>
+<li>Argo is container-focused, Circuit Breaker is Ruby-native</li>
+<li>Argo excels at container orchestration, Circuit Breaker at business logic</li>
+<li>Circuit Breaker provides built-in AI integration</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Argo: Container orchestration, CI/CD pipelines, data processing</li>
+<li>Circuit Breaker: Business processes, document workflows, AI-powered automation</li>
+</ul>
+<h3 id="jenkins">
+  Jenkins
+  <a class="anchor" href="#jenkins">#</a>
+</h3>
+<p><strong>Focus:</strong> Continuous Integration and Deployment</p>
+<p><strong>Key Differences:</strong></p>
+<ul>
+<li>Jenkins uses pipeline scripts (Jenkinsfile), Circuit Breaker uses a Ruby DSL</li>
+<li>Jenkins focuses on build and deployment, Circuit Breaker on business workflows</li>
+<li>Jenkins has limited state management, Circuit Breaker has rich state handling</li>
+<li>Circuit Breaker provides native AI integration</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Jenkins: Build automation, deployment pipelines, CI/CD</li>
+<li>Circuit Breaker: Complex business processes, AI-powered workflows</li>
+</ul>
+<h3 id="github-actions">
+  GitHub Actions
+  <a class="anchor" href="#github-actions">#</a>
+</h3>
+<p><strong>Focus:</strong> CI/CD and automation for GitHub repositories</p>
+<p><strong>Key Differences:</strong></p>
+<ul>
+<li>GitHub Actions uses YAML-based workflow definitions</li>
+<li>Limited to GitHub ecosystem vs. Circuit Breaker&rsquo;s general-purpose design</li>
+<li>Event-driven vs. state-driven architecture</li>
+<li>Circuit Breaker offers more complex workflow patterns</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>GitHub Actions: Repository-centric automation, CI/CD</li>
+<li>Circuit Breaker: Complex business logic, AI integration, state management</li>
+</ul>
+<h2 id="when-to-use-circuit-breaker">
+  When to Use Circuit Breaker
+  <a class="anchor" href="#when-to-use-circuit-breaker">#</a>
+</h2>
+<p>Circuit Breaker is particularly well-suited for:</p>
+<ol>
+<li>
+<p><strong>Complex Business Processes</strong></p>
+<ul>
+<li>Multiple states and transitions</li>
+<li>Complex validation rules</li>
+<li>State-dependent behavior</li>
+</ul>
+</li>
+<li>
+<p><strong>AI-Powered Workflows</strong></p>
+<ul>
+<li>LLM integration</li>
+<li>Document analysis</li>
+<li>Autonomous agents</li>
+</ul>
+</li>
+<li>
+<p><strong>State-Heavy Applications</strong></p>
+<ul>
+<li>Rich state management</li>
+<li>Complex transition rules</li>
+<li>Audit requirements</li>
+</ul>
+</li>
+<li>
+<p><strong>Hybrid Workflows</strong></p>
+<ul>
+<li>Combining automated and manual steps</li>
+<li>Multiple participant roles</li>
+<li>Complex approval flows</li>
+</ul>
+</li>
+</ol>
+<h2 id="when-to-use-alternatives">
+  When to Use Alternatives
+  <a class="anchor" href="#when-to-use-alternatives">#</a>
+</h2>
+<p>Consider alternatives when:</p>
+<ol>
+<li>
+<p><strong>Simple CI/CD Pipelines</strong></p>
+<ul>
+<li>GitHub Actions or Jenkins may be more appropriate</li>
+<li>Simpler setup for basic build/test/deploy</li>
+</ul>
+</li>
+<li>
+<p><strong>Container Orchestration</strong></p>
+<ul>
+<li>Argo Workflows or Kubernetes native tools</li>
+<li>Focus on container lifecycle</li>
+</ul>
+</li>
+<li>
+<p><strong>Simple Linear Workflows</strong></p>
+<ul>
+<li>DAG-based systems may be simpler</li>
+<li>No need for complex state management</li>
+</ul>
+</li>
+<li>
+<p><strong>Platform-Specific Requirements</strong></p>
+<ul>
+<li>GitHub Actions for GitHub-specific automation</li>
+<li>Jenkins for traditional enterprise CI/CD</li>
+</ul>
+</li>
+</ol>
+<p>While these tools excel in their specific domains, Circuit Breaker can also be used effectively for CI/CD and infrastructure management. See <a href="/docs/cicd/">CI/CD and Infrastructure</a> for a detailed guide on using Circuit Breaker in DevOps workflows.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/lfaus/circuit_breaker/edit/main/content/content/docs/comparison/_index.md" target="_blank" rel="noopener">
+      <img src="/circuit_breaker/svg/edit.svg" class="book-icon" alt="" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#dags-vs-petri-nets">DAGs vs. Petri Nets</a>
+      <ul>
+        <li><a href="#directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</a></li>
+        <li><a href="#petri-nets">Petri Nets</a></li>
+      </ul>
+    </li>
+    <li><a href="#comparison-with-popular-workflow-systems">Comparison with Popular Workflow Systems</a>
+      <ul>
+        <li><a href="#argo-workflows">Argo Workflows</a></li>
+        <li><a href="#jenkins">Jenkins</a></li>
+        <li><a href="#github-actions">GitHub Actions</a></li>
+      </ul>
+    </li>
+    <li><a href="#when-to-use-circuit-breaker">When to Use Circuit Breaker</a></li>
+    <li><a href="#when-to-use-alternatives">When to Use Alternatives</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
