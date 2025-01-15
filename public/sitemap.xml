@@ -10,6 +10,10 @@
   </url><url>
     <loc>http://localhost:1313/circuit_breaker/docs/examples/</loc>
   </url><url>
+    <loc>http://localhost:1313/circuit_breaker/docs/comparison/</loc>
+  </url><url>
+    <loc>http://localhost:1313/circuit_breaker/docs/cicd/</loc>
+  </url><url>
     <loc>http://localhost:1313/circuit_breaker/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/circuit_breaker/</loc>

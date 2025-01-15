@@ -1,44 +1,22 @@
 ---
 title: Circuit Breaker
-type: docs
 ---
+A powerful Ruby library for building AI-powered workflows and assistants [powered by Petri Nets](/docs/comparison). Circuit Breaker provides a declarative DSL for creating intelligent workflows that can interact with LLMs, manage state, and execute complex business logic.
 
-# Circuit Breaker
+[Get Started](/docs/getting-started)
 
-Circuit Breaker is a powerful Ruby library that provides a declarative DSL for building AI-powered workflows and assistants. It seamlessly integrates with various LLM providers and offers robust tools for document analysis, workflow management, and autonomous agents.
+[Learn More](/docs/overview)
 
 ## Key Features
 
-### 1. Declarative Workflow DSL
-- State-based workflow engine with intuitive syntax
-- Policy-based transitions with rule chains
-- Unified rules system for validation and transitions
-- Comprehensive history tracking
-- Event handling and state management
+### Declarative Workflow DSL
+State-based workflow engine with intuitive syntax, policy-based transitions, and comprehensive history tracking.
 
-### 2. Rules System
-- Unified DSL for defining rules and validations
-- Support for complex rule chains and conditions
-- Built-in helpers for common validations
-- Rule composition with AND/OR logic
-- Clear error reporting and handling
+### AI Integration
+Multiple LLM providers, automatic model detection, tool integration framework, and memory management.
 
-### 3. AI Integration
-- Multiple LLM providers (OpenAI, Ollama)
-- Automatic model detection
-- Tool integration framework
-- Memory management
-- Error handling with retries
+### Rules System
+Unified DSL for defining rules and validations, with support for complex rule chains and conditions.
 
-### 4. Document Analysis
-- Content quality assessment
-- Sentiment and tone analysis
-- Context detection
-- Improvement suggestions
-- Structure evaluation
-
-### 5. Executors
-- AssistantExecutor for AI-powered tools
-- AgentExecutor for autonomous tasks
-- Custom executor support
-- Chainable tool pipelines
+### Executors
+AssistantExecutor for AI-powered tools, AgentExecutor for autonomous tasks, and custom executor support.
