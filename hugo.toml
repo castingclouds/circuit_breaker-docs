@@ -1,4 +1,4 @@
-baseURL = 'https://lfaus.github.io/circuit_breaker/'
+baseURL = 'https://castingclouds.github.io/cb-docs/'
 languageCode = 'en-us'
 title = 'Circuit Breaker'
 theme = 'hextra'
@@ -14,7 +14,7 @@ unsafe = true
 
   [[menu.main]]
     name = "GitHub"
-    url = "https://github.com/lfaus/circuit_breaker"
+    url = "https://github.com/castingclouds/circuit_breaker"
     weight = 2
 
 [params]
