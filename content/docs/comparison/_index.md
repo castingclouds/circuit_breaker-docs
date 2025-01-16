@@ -74,4 +74,4 @@ Circuit Breaker is particularly well-suited for:
    - Multiple participant roles
    - Complex approval flows
 
-Circuit Breaker can also be used effectively for CI/CD and infrastructure management. See [CI/CD and Infrastructure](/docs/cicd/) for a detailed guide on using Circuit Breaker in DevOps workflows.
+Circuit Breaker can also be used effectively for CI/CD and infrastructure management. See [CI/CD and Infrastructure]({{< ref "/docs/cicd" >}}) for a detailed guide on using Circuit Breaker in DevOps workflows.

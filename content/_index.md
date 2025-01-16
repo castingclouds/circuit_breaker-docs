@@ -1,11 +1,11 @@
 ---
 title: Circuit Breaker
 ---
-A powerful Ruby library for building AI-powered workflows with Agents and Assistants [powered by Petri Nets](/docs/comparison). Circuit Breaker provides a declarative DSL for creating intelligent workflows that can interact with LLMs, manage state, and execute complex business logic.
+A powerful Ruby library for building AI-powered workflows with Agents and Assistants [powered by Petri Nets]({{< ref "/docs/comparison" >}}). Circuit Breaker provides a declarative DSL for creating intelligent workflows that can interact with LLMs, manage state, and execute complex business logic.
 
-[Get Started](/docs/getting-started)
+[Get Started]({{< ref "/docs" >}})
 
-[Learn More](/docs/overview)
+[Learn More]({{< ref "/docs/overview" >}})
 
 ## Key Features
 

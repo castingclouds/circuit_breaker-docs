@@ -1,8 +1,9 @@
 ---
 weight: 6
 bookFlatSection: true
+linkTitle: "CI/CD"
 ---
-# Using Circuit Breaker for CI/CD and Infrastructure
+# Using Circuit Breaker for Infrastructure Management
 
 While traditional CI/CD tools are optimized for linear pipelines, Circuit Breaker's state-based approach offers unique advantages for modern DevOps practices. This guide explores how to leverage Circuit Breaker's capabilities for infrastructure management, CI/CD, and configuration management.
 

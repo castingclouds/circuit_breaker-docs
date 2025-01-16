@@ -8,22 +8,22 @@ Welcome to the Circuit Breaker documentation! Here you'll find comprehensive gui
 
 ## Quick Navigation
 
-### [Overview](overview)
+### [Overview]({{< ref "/docs/overview" >}})
 Learn about Circuit Breaker's architecture and core concepts
 
-### [Getting Started](getting-started)
+### [Getting Started]({{< ref "/docs/getting-started" >}})
 Install Circuit Breaker and build your first workflow
 
-### [Executors](executors)
+### [Executors]({{< ref "/docs/executors" >}})
 Learn about different executor types and their capabilities
 
-### [Examples](examples)
+### [Examples]({{< ref "/docs/examples" >}})
 Explore example workflows and use cases
 
-### [Comparison](comparison)
+### [Comparison]({{< ref "/docs/comparison" >}})
 Compare Circuit Breaker with other workflow systems
 
-### [CI/CD](cicd)
+### [CI/CD]({{< ref "/docs/cicd" >}})
 Use Circuit Breaker for CI/CD and infrastructure management
 
 ## Getting Help

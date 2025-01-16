@@ -1,4 +1,4 @@
-baseURL = 'https://castingclouds.github.io/cb-docs/'
+baseURL = 'https://castingclouds.github.io/cb-docs'
 languageCode = 'en-us'
 title = 'Circuit Breaker'
 theme = 'hextra'
