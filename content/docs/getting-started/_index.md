@@ -7,7 +7,7 @@ bookFlatSection: true
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'circuit_breaker'
+gem 'circuit_breaker-wf'
 ```
 
 And then execute:
