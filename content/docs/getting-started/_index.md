@@ -7,7 +7,7 @@ bookFlatSection: true
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'circuit_breaker'
+gem 'circuit_breaker-wf'
 ```
 
 And then execute:
@@ -17,7 +17,7 @@ $ bundle install
 
 Or install it yourself as:
 ```bash
-$ gem install circuit_breaker
+$ gem install circuit_breaker-wf
 ```
 
 ## Basic Usage
